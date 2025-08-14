@@ -1,115 +1,143 @@
 'use client'
 
-import { useState } from 'react'
-import { signOut, useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { t } from '@/lib/i18n'
+import { UserRole, hasPermission, getRoleDisplayName } from '@/lib/roles'
 
 interface DashboardLayoutProps {
   children: React.ReactNode
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
+  const router = useRouter()
   const { language } = useLanguage()
 
-  const navigation = [
-    { name: t('home', language), href: '/dashboard', icon: '🏠' },
-    { name: t('users', language), href: '/dashboard/users', icon: '👥' },
-    { name: t('lessons', language), href: '/dashboard/lessons', icon: '📚' },
-    { name: t('statistics', language), href: '/dashboard/stats', icon: '📊' },
-    { name: t('profile', language), href: '/profile', icon: '👤' },
-    { name: t('settings', language), href: '/dashboard/settings', icon: '⚙️' },
-  ]
+  useEffect(() => {
+    if (status === 'loading') return
+    
+    if (!session) {
+      router.push('/auth/login')
+      return
+    }
+
+    // Check if user has access to admin panel
+    const userRole = session.user?.role as UserRole
+    if (!hasPermission(userRole, 'canAccessAdminPanel')) {
+      router.push('/profile')
+      return
+    }
+  }, [session, status, router])
+
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">{t('loading', language)}</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!session) {
+    return null
+  }
+
+  const userRole = session.user?.role as UserRole
+
+  // Navigation items based on role
+  const getNavigationItems = () => {
+    const baseItems = [
+      { name: t('overview', language), href: '/dashboard', icon: '📊' },
+      { name: t('profile', language), href: '/profile', icon: '👤' },
+    ]
+
+    if (hasPermission(userRole, 'canManageUsers')) {
+      baseItems.push({ name: t('users', language), href: '/dashboard/users', icon: '👥' })
+    }
+
+    if (hasPermission(userRole, 'canManageCourses')) {
+      baseItems.push({ name: t('lessons', language), href: '/dashboard/lessons', icon: '📚' })
+    }
+
+    if (hasPermission(userRole, 'canViewAnalytics')) {
+      baseItems.push({ name: t('statistics', language), href: '/dashboard/stats', icon: '📈' })
+    }
+
+    if (hasPermission(userRole, 'canModerateContent')) {
+      baseItems.push({ name: t('contentModeration', language), href: '/moderation', icon: '🛡️' })
+    }
+
+    if (userRole === 'admin') {
+      baseItems.push({ name: t('settings', language), href: '/dashboard/settings', icon: '⚙️' })
+      baseItems.push({ name: t('systemSettings', language), href: '/admin/system', icon: '🔧' })
+    }
+
+    return baseItems
+  }
+
+  const navigationItems = getNavigationItems()
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Mobile sidebar */}
-      <div className={`fixed inset-0 z-50 lg:hidden ${sidebarOpen ? 'block' : 'hidden'}`}>
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-75" onClick={() => setSidebarOpen(false)} />
-        <div className="fixed inset-y-0 left-0 flex w-64 flex-col bg-white">
-          <div className="flex h-16 items-center justify-between px-4">
-            <h1 className="text-xl font-semibold text-gray-900">Deutsch Lernen</h1>
-            <button
-              onClick={() => setSidebarOpen(false)}
-              className="text-gray-400 hover:text-gray-600"
-            >
-              ✕
-            </button>
-          </div>
-          <nav className="flex-1 space-y-1 px-2 py-4">
-            {navigation.map((item) => (
+    <div className="min-h-screen bg-gray-50">
+      {/* Top Bar */}
+      <div className="bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <h1 className="text-xl font-semibold text-gray-900">
+                {t('dashboard', language)}
+              </h1>
+              <span className="ml-3 px-2 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 rounded-full">
+                {getRoleDisplayName(userRole, language)}
+              </span>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <span className="text-sm text-gray-600">
+                {t('welcomeUser', language, { name: session.user?.name || 'User' })}
+              </span>
               <Link
-                key={item.name}
-                href={item.href}
-                className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                onClick={() => setSidebarOpen(false)}
+                href="/profile"
+                className="text-indigo-600 hover:text-indigo-700 text-sm font-medium"
               >
-                <span className="mr-3 text-lg">{item.icon}</span>
-                {item.name}
+                {t('profile', language)}
               </Link>
-            ))}
-          </nav>
-        </div>
-      </div>
-
-      {/* Desktop sidebar */}
-      <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col">
-        <div className="flex flex-col flex-grow bg-white border-r border-gray-200">
-          <div className="flex h-16 items-center px-4">
-            <h1 className="text-xl font-semibold text-gray-900">Deutsch Lernen</h1>
-          </div>
-          <nav className="flex-1 space-y-1 px-2 py-4">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-              >
-                <span className="mr-3 text-lg">{item.icon}</span>
-                {item.name}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </div>
-
-      {/* Main content */}
-      <div className="lg:pl-64">
-        {/* Top bar */}
-        <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-          <button
-            type="button"
-            className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
-            onClick={() => setSidebarOpen(true)}
-          >
-            ☰
-          </button>
-
-          <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-            <div className="flex flex-1" />
-            <div className="flex items-center gap-x-4 lg:gap-x-6">
-              <div className="text-sm text-gray-700">
-                {t('welcomeUser', language, { name: session?.user?.name || 'User' })}
-              </div>
-              <button
-                onClick={() => signOut()}
-                className="text-sm text-gray-600 hover:text-gray-900"
-              >
-                {t('logout', language)}
-              </button>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Page content */}
-        <main className="py-6">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            {children}
-          </div>
-        </main>
+      <div className="flex">
+        {/* Sidebar */}
+        <div className="w-64 bg-white shadow-sm min-h-screen">
+          <nav className="mt-8">
+            <div className="px-4">
+              <div className="space-y-1">
+                {navigationItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition-colors duration-150"
+                  >
+                    <span className="mr-3 text-lg">{item.icon}</span>
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 p-8">
+          {children}
+        </div>
       </div>
     </div>
   )

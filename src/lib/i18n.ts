@@ -15,6 +15,7 @@ export const translations = {
     register: 'Registrieren',
     email: 'E-Mail',
     password: 'Passwort',
+    confirmPassword: 'Passwort bestätigen',
     submit: 'Absenden',
     cancel: 'Abbrechen',
     save: 'Speichern',
@@ -26,11 +27,15 @@ export const translations = {
     loading: 'Lädt...',
     error: 'Fehler',
     success: 'Erfolg',
+    createAccount: 'Erstellen Sie ein neues Konto',
+    alreadyHaveAccount: 'Haben Sie bereits ein Konto?',
+    creating: 'Wird erstellt...',
     
     // Navigation
     home: 'Startseite',
     about: 'Über uns',
     courses: 'Kurse',
+    coursesDescription: 'Entdecken Sie unsere umfassenden Deutschkurse',
     contact: 'Kontakt',
     
     // Homepage
@@ -61,6 +66,12 @@ export const translations = {
     // User Menu
     myLessons: 'Meine Lektionen',
     progress: 'Fortschritt',
+    myCourses: 'Meine Kurse',
+    premiumContent: 'Premium Inhalt',
+    students: 'Schüler',
+    analytics: 'Analysen',
+    contentModeration: 'Inhaltsmoderation',
+    systemSettings: 'Systemeinstellungen',
     
     // Auth
     loginTitle: 'In das System einloggen',
@@ -101,6 +112,9 @@ export const translations = {
     pending: 'Ausstehend',
     admin: 'Administrator',
     userRole: 'Benutzer',
+    premiumUser: 'Premium Benutzer',
+    teacher: 'Lehrer',
+    moderator: 'Moderator',
     
     // Lessons
     lessonManagement: 'Lektionenverwaltung',
@@ -126,7 +140,122 @@ export const translations = {
     generalError: 'Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut',
     resetEmailSent: 'E-Mail zum Zurücksetzen des Passworts wurde gesendet. Bitte überprüfen Sie Ihren Posteingang.',
     resetEmailError: 'E-Mail zum Zurücksetzen des Passworts konnte nicht gesendet werden',
-    welcomeUser: 'Willkommen, {name}'
+    welcomeUser: 'Willkommen, {name}',
+    
+    // Admin Panel
+    adminDashboard: 'Admin Dashboard',
+    adminDashboardSubtitle: 'Verwalten Sie das gesamte System',
+    adminPanel: 'Admin Panel',
+    backToApp: 'Zurück zur App',
+    manageAllUsers: 'Alle Benutzer im System verwalten',
+    manageCoursesAndLessons: 'Kurse und Lektionen verwalten',
+    systemAnalyticsAndReports: 'Systemanalysen und Berichte',
+    configureSystemSettings: 'Systemeinstellungen konfigurieren',
+    
+    // System Overview
+    totalCourses: 'Gesamte Kurse',
+    activeUsers: 'Aktive Benutzer',
+    systemStatus: 'Systemstatus',
+    systemUptime: 'Systemlaufzeit',
+    lastBackup: 'Letzter Backup',
+    storageUsed: 'Speicherplatz verwendet',
+    quickActions: 'Schnellaktionen',
+    recentActivities: 'Letzte Aktivitäten',
+    viewAllActivities: 'Alle Aktivitäten anzeigen',
+    
+    // User Management
+    searchUsers: 'Benutzer suchen',
+    allRoles: 'Alle Rollen',
+    allStatuses: 'Alle Status',
+    showingResults: 'Zeige {count} Ergebnisse',
+    selectedUsers: '{count} Benutzer ausgewählt',
+    joined: 'Beigetreten',
+    complete: 'abgeschlossen',
+    showingPage: 'Zeige Seite {page} von {total}',
+    previous: 'Zurück',
+    next: 'Weiter',
+    
+    // Content Management
+    courseManagementComingSoon: 'Kursverwaltung wird bald verfügbar sein',
+    lessonManagementComingSoon: 'Lektionenverwaltung wird bald verfügbar sein',
+    
+    // Analytics
+    userGrowth: 'Benutzerwachstum',
+    courseCompletion: 'Kursabschluss',
+    chartComingSoon: 'Diagramm wird bald verfügbar sein',
+    popularCourses: 'Beliebte Kurse',
+    systemPerformance: 'Systemleistung',
+    cpuUsage: 'CPU-Auslastung',
+    memoryUsage: 'Speicherauslastung',
+    storageUsage: 'Speicherplatzauslastung',
+    
+    // System Settings
+    general: 'Allgemein',
+    security: 'Sicherheit',
+    backup: 'Backup',
+    maintenance: 'Wartung',
+    generalSettings: 'Allgemeine Einstellungen',
+    applicationName: 'Anwendungsname',
+    defaultLanguage: 'Standardsprache',
+    timezone: 'Zeitzone',
+    securitySettings: 'Sicherheitseinstellungen',
+    requireEmailVerification: 'E-Mail-Verifizierung erforderlich',
+    enableTwoFactorAuth: 'Zwei-Faktor-Authentifizierung aktivieren',
+    sessionTimeout: 'Sitzungs-Timeout',
+    emailSettings: 'E-Mail-Einstellungen',
+    smtpHost: 'SMTP-Host',
+    smtpPort: 'SMTP-Port',
+    fromEmail: 'Absender-E-Mail',
+    backupSettings: 'Backup-Einstellungen',
+    enableAutoBackup: 'Automatisches Backup aktivieren',
+    backupFrequency: 'Backup-Häufigkeit',
+    retentionPeriod: 'Aufbewahrungszeitraum',
+    maintenanceSettings: 'Wartungseinstellungen',
+    maintenanceMode: 'Wartungsmodus',
+    maintenanceModeDescription: 'System für Benutzer unzugänglich machen',
+    maintenanceMessage: 'Wartungsnachricht',
+    clearCache: 'Cache leeren',
+    optimizeDatabase: 'Datenbank optimieren',
+    saveSettings: 'Einstellungen speichern',
+    
+    // Roles & Permissions
+    roleDescription: 'Rollenbeschreibung',
+    rolePermissions: 'Rollenberechtigungen',
+    basicUser: 'Grundbenutzer',
+    basicUserDesc: 'Zugriff auf kostenlose Kurse und grundlegende Funktionen',
+    premiumUserDesc: 'Vollzugriff auf alle Kurse und Premium-Inhalte',
+    teacherDesc: 'Kann Kurse erstellen und verwalten, Schüler betreuen',
+    moderatorDesc: 'Kann Inhalte moderieren und Benutzer verwalten',
+    adminDesc: 'Vollzugriff auf alle Systemfunktionen und -einstellungen',
+    
+    // Role Features
+    roleFeatures: 'Rollenbasierte Funktionen',
+    roleFeaturesDescription: 'Entdecken Sie die verschiedenen Benutzerrollen und deren Funktionen',
+    freeCourses: 'Kostenlose Kurse',
+    basicProgress: 'Grundlegender Fortschritt',
+    communityAccess: 'Community-Zugang',
+    allCourses: 'Alle Kurse',
+    advancedFeatures: 'Erweiterte Funktionen',
+    prioritySupport: 'Prioritäts-Support',
+    createContent: 'Inhalte erstellen',
+    studentManagement: 'Schülerverwaltung',
+    analyticsAccess: 'Analytics-Zugang',
+    readyToStart: 'Bereit zu starten?',
+    joinThousands: 'Schließen Sie sich Tausenden von Lernenden an',
+
+    // Admin
+    courseManagement: {
+      en: 'Course Management',
+      de: 'Kursverwaltung'
+    },
+    manageAllCourses: {
+      en: 'Manage all courses in the system',
+      de: 'Verwalten Sie alle Kurse im System'
+    },
+    addNewCourse: {
+      en: 'Add New Course',
+      de: 'Neuen Kurs hinzufügen'
+    }
   },
   
   en: {
@@ -136,6 +265,7 @@ export const translations = {
     register: 'Register',
     email: 'Email',
     password: 'Password',
+    confirmPassword: 'Confirm Password',
     submit: 'Submit',
     cancel: 'Cancel',
     save: 'Save',
@@ -147,11 +277,15 @@ export const translations = {
     loading: 'Loading...',
     error: 'Error',
     success: 'Success',
+    createAccount: 'Create a new account',
+    alreadyHaveAccount: 'Already have an account?',
+    creating: 'Creating...',
     
     // Navigation
     home: 'Home',
     about: 'About',
     courses: 'Courses',
+    coursesDescription: 'Discover our comprehensive German courses',
     contact: 'Contact',
     
     // Homepage
@@ -182,6 +316,12 @@ export const translations = {
     // User Menu
     myLessons: 'My Lessons',
     progress: 'Progress',
+    myCourses: 'My Courses',
+    premiumContent: 'Premium Content',
+    students: 'Students',
+    analytics: 'Analytics',
+    contentModeration: 'Content Moderation',
+    systemSettings: 'System Settings',
     
     // Auth
     loginTitle: 'Login to System',
@@ -222,6 +362,9 @@ export const translations = {
     pending: 'Pending',
     admin: 'Admin',
     userRole: 'User',
+    premiumUser: 'Premium User',
+    teacher: 'Teacher',
+    moderator: 'Moderator',
     
     // Lessons
     lessonManagement: 'Lesson Management',
@@ -247,7 +390,122 @@ export const translations = {
     generalError: 'An error occurred, please try again',
     resetEmailSent: 'Password reset email has been sent. Please check your inbox.',
     resetEmailError: 'Could not send password reset email',
-    welcomeUser: 'Welcome, {name}'
+    welcomeUser: 'Welcome, {name}',
+    
+    // Admin Panel
+    adminDashboard: 'Admin Dashboard',
+    adminDashboardSubtitle: 'Manage the entire system',
+    adminPanel: 'Admin Panel',
+    backToApp: 'Back to App',
+    manageAllUsers: 'Manage all users in the system',
+    manageCoursesAndLessons: 'Manage courses and lessons',
+    systemAnalyticsAndReports: 'System analytics and reports',
+    configureSystemSettings: 'Configure system settings',
+    
+    // System Overview
+    totalCourses: 'Total Courses',
+    activeUsers: 'Active Users',
+    systemStatus: 'System Status',
+    systemUptime: 'System Uptime',
+    lastBackup: 'Last Backup',
+    storageUsed: 'Storage Used',
+    quickActions: 'Quick Actions',
+    recentActivities: 'Recent Activities',
+    viewAllActivities: 'View All Activities',
+    
+    // User Management
+    searchUsers: 'Search Users',
+    allRoles: 'All Roles',
+    allStatuses: 'All Statuses',
+    showingResults: 'Showing {count} results',
+    selectedUsers: '{count} users selected',
+    joined: 'Joined',
+    complete: 'Complete',
+    showingPage: 'Showing page {page} of {total}',
+    previous: 'Previous',
+    next: 'Next',
+    
+    // Content Management
+    courseManagementComingSoon: 'Course management coming soon',
+    lessonManagementComingSoon: 'Lesson management coming soon',
+    
+    // Analytics
+    userGrowth: 'User Growth',
+    courseCompletion: 'Course Completion',
+    chartComingSoon: 'Chart coming soon',
+    popularCourses: 'Popular Courses',
+    systemPerformance: 'System Performance',
+    cpuUsage: 'CPU Usage',
+    memoryUsage: 'Memory Usage',
+    storageUsage: 'Storage Usage',
+    
+    // System Settings
+    general: 'General',
+    security: 'Security',
+    backup: 'Backup',
+    maintenance: 'Maintenance',
+    generalSettings: 'General Settings',
+    applicationName: 'Application Name',
+    defaultLanguage: 'Default Language',
+    timezone: 'Timezone',
+    securitySettings: 'Security Settings',
+    requireEmailVerification: 'Require Email Verification',
+    enableTwoFactorAuth: 'Enable Two-Factor Authentication',
+    sessionTimeout: 'Session Timeout',
+    emailSettings: 'Email Settings',
+    smtpHost: 'SMTP Host',
+    smtpPort: 'SMTP Port',
+    fromEmail: 'From Email',
+    backupSettings: 'Backup Settings',
+    enableAutoBackup: 'Enable Auto Backup',
+    backupFrequency: 'Backup Frequency',
+    retentionPeriod: 'Retention Period',
+    maintenanceSettings: 'Maintenance Settings',
+    maintenanceMode: 'Maintenance Mode',
+    maintenanceModeDescription: 'Make the system inaccessible to users',
+    maintenanceMessage: 'Maintenance Message',
+    clearCache: 'Clear Cache',
+    optimizeDatabase: 'Optimize Database',
+    saveSettings: 'Save Settings',
+    
+    // Roles & Permissions
+    roleDescription: 'Role Description',
+    rolePermissions: 'Role Permissions',
+    basicUser: 'Basic User',
+    basicUserDesc: 'Access to free courses and basic features',
+    premiumUserDesc: 'Full access to all courses and premium content',
+    teacherDesc: 'Can create and manage courses, mentor students',
+    moderatorDesc: 'Can moderate content and manage users',
+    adminDesc: 'Full access to all system functions and settings',
+    
+    // Role Features
+    roleFeatures: 'Role-Based Features',
+    roleFeaturesDescription: 'Discover different user roles and their functions',
+    freeCourses: 'Free Courses',
+    basicProgress: 'Basic Progress',
+    communityAccess: 'Community Access',
+    allCourses: 'All Courses',
+    advancedFeatures: 'Advanced Features',
+    prioritySupport: 'Priority Support',
+    createContent: 'Create Content',
+    studentManagement: 'Student Management',
+    analyticsAccess: 'Analytics Access',
+    readyToStart: 'Ready to Start?',
+    joinThousands: 'Join thousands of learners',
+
+    // Admin
+    courseManagement: {
+      en: 'Course Management',
+      de: 'Kursverwaltung'
+    },
+    manageAllCourses: {
+      en: 'Manage all courses in the system',
+      de: 'Verwalten Sie alle Kurse im System'
+    },
+    addNewCourse: {
+      en: 'Add New Course',
+      de: 'Neuen Kurs hinzufügen'
+    }
   }
 }
 

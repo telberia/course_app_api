@@ -5,12 +5,16 @@ import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { t } from '@/lib/i18n'
+import { UserRole, hasPermission, getRoleDisplayName } from '@/lib/roles'
 import LanguageSwitcher from './LanguageSwitcher'
 
 export default function MainMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const { data: session } = useSession()
   const { language } = useLanguage()
+
+  // Get user role from session
+  const userRole: UserRole = (session?.user?.role as UserRole) || 'user'
 
   const mainMenuItems = [
     { name: t('home', language), href: '/', icon: '🏠' },
@@ -19,19 +23,60 @@ export default function MainMenu() {
     { name: t('contact', language), href: '/contact', icon: '📧' },
   ]
 
-  const userMenuItems = session ? [
-    { name: t('dashboard', language), href: '/dashboard', icon: '📊' },
+  // Basic user menu items
+  const basicUserMenuItems = [
     { name: t('profile', language), href: '/profile', icon: '👤' },
-    { name: t('myLessons', language), href: '/my-lessons', icon: '📖' },
     { name: t('progress', language), href: '/progress', icon: '📈' },
-  ] : []
+  ]
 
-  const adminMenuItems = session?.user?.role === 'admin' ? [
+  // Premium user menu items
+  const premiumUserMenuItems = [
+    ...basicUserMenuItems,
+    { name: t('myCourses', language), href: '/my-courses', icon: '🎓' },
+    { name: t('premiumContent', language), href: '/premium', icon: '⭐' },
+  ]
+
+  // Teacher menu items
+  const teacherMenuItems = [
+    ...premiumUserMenuItems,
+    { name: t('myLessons', language), href: '/my-lessons', icon: '📖' },
+    { name: t('students', language), href: '/students', icon: '👥' },
+    { name: t('analytics', language), href: '/analytics', icon: '📊' },
+  ]
+
+  // Moderator menu items
+  const moderatorMenuItems = [
+    ...teacherMenuItems,
+    { name: t('contentModeration', language), href: '/moderation', icon: '🛡️' },
     { name: t('userManagement', language), href: '/dashboard/users', icon: '👥' },
+  ]
+
+  // Admin menu items
+  const adminMenuItems = [
+    ...moderatorMenuItems,
     { name: t('lessonManagement', language), href: '/dashboard/lessons', icon: '📚' },
     { name: t('statistics', language), href: '/dashboard/stats', icon: '📊' },
     { name: t('settings', language), href: '/dashboard/settings', icon: '⚙️' },
-  ] : []
+    { name: t('systemSettings', language), href: '/admin/system', icon: '🔧' },
+  ]
+
+  // Get appropriate menu items based on role
+  const getUserMenuItems = () => {
+    switch (userRole) {
+      case 'admin':
+        return adminMenuItems
+      case 'moderator':
+        return moderatorMenuItems
+      case 'teacher':
+        return teacherMenuItems
+      case 'premium':
+        return premiumUserMenuItems
+      default:
+        return basicUserMenuItems
+    }
+  }
+
+  const userMenuItems = session ? getUserMenuItems() : []
 
   return (
     <nav className="bg-white shadow-lg">
@@ -70,11 +115,14 @@ export default function MainMenu() {
                 <button className="flex items-center text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
                   <span className="mr-2">👤</span>
                   {session.user?.name || 'User'}
+                  <span className="ml-2 text-xs text-gray-500">
+                    ({getRoleDisplayName(userRole, language)})
+                  </span>
                   <span className="ml-2">▼</span>
                 </button>
                 
                 {/* Dropdown Menu */}
-                <div className="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   {/* User Menu Items */}
                   {userMenuItems.map((item) => (
                     <Link
@@ -86,23 +134,6 @@ export default function MainMenu() {
                       {item.name}
                     </Link>
                   ))}
-                  
-                  {/* Admin Menu Items */}
-                  {adminMenuItems.length > 0 && (
-                    <>
-                      <div className="border-t border-gray-100 my-1"></div>
-                      {adminMenuItems.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-150"
-                        >
-                          <span className="mr-3">{item.icon}</span>
-                          {item.name}
-                        </Link>
-                      ))}
-                    </>
-                  )}
                   
                   <div className="border-t border-gray-100 my-1"></div>
                   <button
@@ -173,6 +204,9 @@ export default function MainMenu() {
               {session && (
                 <>
                   <div className="border-t border-gray-200 my-2"></div>
+                  <div className="px-3 py-2 text-sm text-gray-500">
+                    {getRoleDisplayName(userRole, language)}
+                  </div>
                   {userMenuItems.map((item) => (
                     <Link
                       key={item.name}
@@ -184,24 +218,6 @@ export default function MainMenu() {
                       {item.name}
                     </Link>
                   ))}
-                  
-                  {/* Admin Menu Items */}
-                  {adminMenuItems.length > 0 && (
-                    <>
-                      <div className="border-t border-gray-200 my-2"></div>
-                      {adminMenuItems.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="flex items-center text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          <span className="mr-3">{item.icon}</span>
-                          {item.name}
-                        </Link>
-                      ))}
-                    </>
-                  )}
                   
                   <div className="border-t border-gray-200 my-2"></div>
                   <button

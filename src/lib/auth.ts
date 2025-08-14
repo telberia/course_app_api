@@ -1,11 +1,12 @@
-import { NextAuthOptions } from 'next-auth'
+import NextAuth, { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { supabase } from './supabase'
+import { UserRole } from './roles'
 
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: 'credentials',
+      name: 'Credentials',
       credentials: {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' }
@@ -25,11 +26,18 @@ export const authOptions: NextAuthOptions = {
             return null
           }
 
+          // Get user profile with role
+          const { data: profile } = await supabase
+            .from('profiles')
+            .select('role, display_name')
+            .eq('id', data.user.id)
+            .single()
+
           return {
             id: data.user.id,
             email: data.user.email,
-            name: data.user.user_metadata?.full_name || data.user.email,
-            role: data.user.user_metadata?.role || 'user',
+            name: profile?.display_name || data.user.user_metadata?.name || 'User',
+            role: profile?.role || 'user' as UserRole,
           }
         } catch (error) {
           console.error('Auth error:', error)
@@ -39,24 +47,27 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   session: {
-    strategy: 'jwt',
+    strategy: 'jwt' as const
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
         token.role = user.role
+        token.id = user.id
       }
       return token
     },
     async session({ session, token }) {
       if (token) {
-        session.user.id = token.sub!
-        session.user.role = token.role as string
+        session.user.id = token.id as string
+        session.user.role = token.role as UserRole
       }
       return session
     }
   },
   pages: {
     signIn: '/auth/login',
+    error: '/auth/login',
   },
+  secret: process.env.NEXTAUTH_SECRET,
 }
