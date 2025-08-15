@@ -53,11 +53,12 @@ export default function MainMenu() {
 
   // Admin menu items
   const adminMenuItems = [
-    ...moderatorMenuItems,
-    { name: t('lessonManagement', language), href: '/dashboard/lessons', icon: '📚' },
-    { name: t('statistics', language), href: '/dashboard/stats', icon: '📊' },
-    { name: t('settings', language), href: '/dashboard/settings', icon: '⚙️' },
-    { name: t('systemSettings', language), href: '/admin/system', icon: '🔧' },
+    ...basicUserMenuItems,
+    { name: t('adminDashboard', language), href: '/admin', icon: '🏠' },
+    { name: t('userManagement', language), href: '/admin/users', icon: '👥' },
+    { name: t('contentManagement', language), href: '/admin/courses', icon: '📚' },
+    { name: t('analytics', language), href: '/admin', icon: '📊' },
+    { name: t('systemSettings', language), href: '/admin', icon: '⚙️' },
   ]
 
   // Get appropriate menu items based on role

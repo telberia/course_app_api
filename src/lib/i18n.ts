@@ -72,6 +72,7 @@ export const translations = {
     analytics: 'Analysen',
     contentModeration: 'Inhaltsmoderation',
     systemSettings: 'Systemeinstellungen',
+    settings: 'Einstellungen',
     
     // Auth
     loginTitle: 'In das System einloggen',
@@ -94,95 +95,87 @@ export const translations = {
     // Stats
     totalUsers: 'Gesamte Benutzer',
     totalLessons: 'Gesamte Lektionen',
+    totalCourses: 'Gesamte Kurse',
+    activeUsers: 'Aktive Benutzer',
     completionRate: 'Abschlussrate',
     averageRating: 'Durchschnittliche Bewertung',
+    statistics: 'Statistiken',
     
     // Users
     userManagement: 'Benutzerverwaltung',
-    userManagementSubtitle: 'Alle Benutzer im System verwalten',
-    addNewUser: 'Neuen Benutzer hinzufügen',
-    usersList: 'Benutzerliste',
-    totalUsersInSystem: 'Gesamt {count} Benutzer im System',
-    user: 'Benutzer',
-    role: 'Rolle',
-    status: 'Status',
-    joinDate: 'Beitrittsdatum',
-    actions: 'Aktionen',
+    addUser: 'Benutzer hinzufügen',
+    editUser: 'Benutzer bearbeiten',
+    deleteUser: 'Benutzer löschen',
+    userName: 'Benutzername',
+    userRole: 'Benutzerrolle',
+    userStatus: 'Benutzerstatus',
+    userEmail: 'E-Mail',
+    userCreated: 'Erstellt am',
+    userActions: 'Aktionen',
     active: 'Aktiv',
-    pending: 'Ausstehend',
-    admin: 'Administrator',
-    userRole: 'Benutzer',
-    premiumUser: 'Premium Benutzer',
+    inactive: 'Inaktiv',
+    suspended: 'Gesperrt',
+    
+    // Roles
+    role: 'Rolle',
+    user: 'Benutzer',
+    premium: 'Premium',
     teacher: 'Lehrer',
     moderator: 'Moderator',
+    admin: 'Administrator',
+    roleUser: 'Benutzer',
+    rolePremium: 'Premium Benutzer',
+    roleTeacher: 'Lehrer',
+    roleModerator: 'Moderator',
+    roleAdmin: 'Administrator',
     
-    // Lessons
-    lessonManagement: 'Lektionenverwaltung',
-    lessonManagementSubtitle: 'Alle Lektionen im System verwalten',
-    addNewLesson: 'Neue Lektion hinzufügen',
-    lessonsList: 'Lektionenliste',
-    totalLessonsInSystem: 'Gesamt {count} Lektionen im System',
-    lesson: 'Lektion',
-    level: 'Niveau',
-    category: 'Kategorie',
-    createdDate: 'Erstellungsdatum',
-    published: 'Veröffentlicht',
-    draft: 'Entwurf',
+    // Content
+    contentManagement: 'Inhaltsverwaltung',
+    lessonManagement: 'Lektionsverwaltung',
+    addLesson: 'Lektion hinzufügen',
+    editLesson: 'Lektion bearbeiten',
+    deleteLesson: 'Lektion löschen',
+    lessonTitle: 'Lektionstitel',
+    lessonDescription: 'Lektionsbeschreibung',
+    lessonContent: 'Lektionsinhalt',
+    lessonOrder: 'Lektionsreihenfolge',
+    lessonStatus: 'Lektionsstatus',
+    lessonActions: 'Aktionen',
     
-    // Navigation
-    users: 'Benutzer',
-    lessons: 'Lektionen',
-    statistics: 'Statistiken',
-    settings: 'Einstellungen',
+    // Courses
+    courseTitle: 'Kurstitel',
+    courseDescription: 'Kursbeschreibung',
+    courseLevel: 'Kursniveau',
+    courseDuration: 'Kursdauer',
+    coursePrice: 'Kurspreis',
+    courseStatus: 'Kursstatus',
+    courseActions: 'Aktionen',
+    addCourse: 'Kurs hinzufügen',
+    editCourse: 'Kurs bearbeiten',
+    deleteCourse: 'Kurs löschen',
     
-    // Messages
-    loginError: 'E-Mail oder Passwort ist falsch',
-    generalError: 'Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut',
-    resetEmailSent: 'E-Mail zum Zurücksetzen des Passworts wurde gesendet. Bitte überprüfen Sie Ihren Posteingang.',
-    resetEmailError: 'E-Mail zum Zurücksetzen des Passworts konnte nicht gesendet werden',
-    welcomeUser: 'Willkommen, {name}',
-    
-    // Admin Panel
+    // Admin
     adminDashboard: 'Admin Dashboard',
     adminDashboardSubtitle: 'Verwalten Sie das gesamte System',
-    adminPanel: 'Admin Panel',
-    backToApp: 'Zurück zur App',
-    manageAllUsers: 'Alle Benutzer im System verwalten',
-    manageCoursesAndLessons: 'Kurse und Lektionen verwalten',
-    systemAnalyticsAndReports: 'Systemanalysen und Berichte',
-    configureSystemSettings: 'Systemeinstellungen konfigurieren',
-    
-    // System Overview
-    totalCourses: 'Gesamte Kurse',
-    activeUsers: 'Aktive Benutzer',
+    systemOverview: 'Systemübersicht',
     systemStatus: 'Systemstatus',
     systemUptime: 'Systemlaufzeit',
-    lastBackup: 'Letzter Backup',
+    lastBackup: 'Letzte Sicherung',
     storageUsed: 'Speicherplatz verwendet',
+    storageTotal: 'Gesamtspeicherplatz',
     quickActions: 'Schnellaktionen',
+    addNewUser: 'Neuen Benutzer hinzufügen',
+    addNewLesson: 'Neue Lektion hinzufügen',
     recentActivities: 'Letzte Aktivitäten',
     viewAllActivities: 'Alle Aktivitäten anzeigen',
-    
-    // User Management
-    searchUsers: 'Benutzer suchen',
-    allRoles: 'Alle Rollen',
-    allStatuses: 'Alle Status',
-    showingResults: 'Zeige {count} Ergebnisse',
-    selectedUsers: '{count} Benutzer ausgewählt',
-    joined: 'Beigetreten',
-    complete: 'abgeschlossen',
-    showingPage: 'Zeige Seite {page} von {total}',
-    previous: 'Zurück',
-    next: 'Weiter',
-    
-    // Content Management
-    courseManagementComingSoon: 'Kursverwaltung wird bald verfügbar sein',
-    lessonManagementComingSoon: 'Lektionenverwaltung wird bald verfügbar sein',
+    courseManagement: 'Kursverwaltung',
+    manageAllCourses: 'Verwalten Sie alle Kurse im System',
+    addNewCourse: 'Neuen Kurs hinzufügen',
     
     // Analytics
     userGrowth: 'Benutzerwachstum',
     courseCompletion: 'Kursabschluss',
-    chartComingSoon: 'Diagramm wird bald verfügbar sein',
+    chartComingSoon: 'Diagramm kommt bald',
     popularCourses: 'Beliebte Kurse',
     systemPerformance: 'Systemleistung',
     cpuUsage: 'CPU-Auslastung',
@@ -192,7 +185,7 @@ export const translations = {
     // System Settings
     general: 'Allgemein',
     security: 'Sicherheit',
-    backup: 'Backup',
+    backup: 'Sicherung',
     maintenance: 'Wartung',
     generalSettings: 'Allgemeine Einstellungen',
     applicationName: 'Anwendungsname',
@@ -205,16 +198,16 @@ export const translations = {
     emailSettings: 'E-Mail-Einstellungen',
     smtpHost: 'SMTP-Host',
     smtpPort: 'SMTP-Port',
-    fromEmail: 'Absender-E-Mail',
-    backupSettings: 'Backup-Einstellungen',
-    enableAutoBackup: 'Automatisches Backup aktivieren',
-    backupFrequency: 'Backup-Häufigkeit',
+    fromEmail: 'Von E-Mail',
+    backupSettings: 'Sicherungseinstellungen',
+    enableAutoBackup: 'Automatische Sicherung aktivieren',
+    backupFrequency: 'Sicherungshäufigkeit',
     retentionPeriod: 'Aufbewahrungszeitraum',
     maintenanceSettings: 'Wartungseinstellungen',
     maintenanceMode: 'Wartungsmodus',
-    maintenanceModeDescription: 'System für Benutzer unzugänglich machen',
+    maintenanceModeDescription: 'Machen Sie das System für Benutzer unzugänglich',
     maintenanceMessage: 'Wartungsnachricht',
-    clearCache: 'Cache leeren',
+    clearCache: 'Cache löschen',
     optimizeDatabase: 'Datenbank optimieren',
     saveSettings: 'Einstellungen speichern',
     
@@ -222,15 +215,15 @@ export const translations = {
     roleDescription: 'Rollenbeschreibung',
     rolePermissions: 'Rollenberechtigungen',
     basicUser: 'Grundbenutzer',
-    basicUserDesc: 'Zugriff auf kostenlose Kurse und grundlegende Funktionen',
-    premiumUserDesc: 'Vollzugriff auf alle Kurse und Premium-Inhalte',
+    basicUserDesc: 'Zugang zu kostenlosen Kursen und Grundfunktionen',
+    premiumUserDesc: 'Voller Zugang zu allen Kursen und Premium-Inhalten',
     teacherDesc: 'Kann Kurse erstellen und verwalten, Schüler betreuen',
     moderatorDesc: 'Kann Inhalte moderieren und Benutzer verwalten',
-    adminDesc: 'Vollzugriff auf alle Systemfunktionen und -einstellungen',
+    adminDesc: 'Voller Zugang zu allen Systemfunktionen und -einstellungen',
     
     // Role Features
     roleFeatures: 'Rollenbasierte Funktionen',
-    roleFeaturesDescription: 'Entdecken Sie die verschiedenen Benutzerrollen und deren Funktionen',
+    roleFeaturesDescription: 'Entdecken Sie verschiedene Benutzerrollen und ihre Funktionen',
     freeCourses: 'Kostenlose Kurse',
     basicProgress: 'Grundlegender Fortschritt',
     communityAccess: 'Community-Zugang',
@@ -241,21 +234,7 @@ export const translations = {
     studentManagement: 'Schülerverwaltung',
     analyticsAccess: 'Analytics-Zugang',
     readyToStart: 'Bereit zu starten?',
-    joinThousands: 'Schließen Sie sich Tausenden von Lernenden an',
-
-    // Admin
-    courseManagement: {
-      en: 'Course Management',
-      de: 'Kursverwaltung'
-    },
-    manageAllCourses: {
-      en: 'Manage all courses in the system',
-      de: 'Verwalten Sie alle Kurse im System'
-    },
-    addNewCourse: {
-      en: 'Add New Course',
-      de: 'Neuen Kurs hinzufügen'
-    }
+    joinThousands: 'Schließen Sie sich Tausenden von Lernenden an'
   },
   
   en: {
@@ -322,6 +301,7 @@ export const translations = {
     analytics: 'Analytics',
     contentModeration: 'Content Moderation',
     systemSettings: 'System Settings',
+    settings: 'Settings',
     
     // Auth
     loginTitle: 'Login to System',
@@ -344,90 +324,82 @@ export const translations = {
     // Stats
     totalUsers: 'Total Users',
     totalLessons: 'Total Lessons',
+    totalCourses: 'Total Courses',
+    activeUsers: 'Active Users',
     completionRate: 'Completion Rate',
     averageRating: 'Average Rating',
+    statistics: 'Statistics',
     
     // Users
     userManagement: 'User Management',
-    userManagementSubtitle: 'Manage all users in the system',
-    addNewUser: 'Add New User',
-    usersList: 'Users List',
-    totalUsersInSystem: 'Total {count} users in system',
-    user: 'User',
-    role: 'Role',
-    status: 'Status',
-    joinDate: 'Join Date',
-    actions: 'Actions',
+    addUser: 'Add User',
+    editUser: 'Edit User',
+    deleteUser: 'Delete User',
+    userName: 'Username',
+    userRole: 'User Role',
+    userStatus: 'User Status',
+    userEmail: 'Email',
+    userCreated: 'Created At',
+    userActions: 'Actions',
     active: 'Active',
-    pending: 'Pending',
-    admin: 'Admin',
-    userRole: 'User',
-    premiumUser: 'Premium User',
+    inactive: 'Inactive',
+    suspended: 'Suspended',
+    
+    // Roles
+    role: 'Role',
+    user: 'User',
+    premium: 'Premium',
     teacher: 'Teacher',
     moderator: 'Moderator',
+    admin: 'Administrator',
+    roleUser: 'User',
+    rolePremium: 'Premium User',
+    roleTeacher: 'Teacher',
+    roleModerator: 'Moderator',
+    roleAdmin: 'Administrator',
     
-    // Lessons
+    // Content
+    contentManagement: 'Content Management',
     lessonManagement: 'Lesson Management',
-    lessonManagementSubtitle: 'Manage all lessons in the system',
-    addNewLesson: 'Add New Lesson',
-    lessonsList: 'Lessons List',
-    totalLessonsInSystem: 'Total {count} lessons in system',
-    lesson: 'Lesson',
-    level: 'Level',
-    category: 'Category',
-    createdDate: 'Created Date',
-    published: 'Published',
-    draft: 'Draft',
+    addLesson: 'Add Lesson',
+    editLesson: 'Edit Lesson',
+    deleteLesson: 'Delete Lesson',
+    lessonTitle: 'Lesson Title',
+    lessonDescription: 'Lesson Description',
+    lessonContent: 'Lesson Content',
+    lessonOrder: 'Lesson Order',
+    lessonStatus: 'Lesson Status',
+    lessonActions: 'Actions',
     
-    // Navigation
-    users: 'Users',
-    lessons: 'Lessons',
-    statistics: 'Statistics',
-    settings: 'Settings',
+    // Courses
+    courseTitle: 'Course Title',
+    courseDescription: 'Course Description',
+    courseLevel: 'Course Level',
+    courseDuration: 'Course Duration',
+    coursePrice: 'Course Price',
+    courseStatus: 'Course Status',
+    courseActions: 'Actions',
+    addCourse: 'Add Course',
+    editCourse: 'Edit Course',
+    deleteCourse: 'Delete Course',
     
-    // Messages
-    loginError: 'Email or password is incorrect',
-    generalError: 'An error occurred, please try again',
-    resetEmailSent: 'Password reset email has been sent. Please check your inbox.',
-    resetEmailError: 'Could not send password reset email',
-    welcomeUser: 'Welcome, {name}',
-    
-    // Admin Panel
+    // Admin
     adminDashboard: 'Admin Dashboard',
     adminDashboardSubtitle: 'Manage the entire system',
-    adminPanel: 'Admin Panel',
-    backToApp: 'Back to App',
-    manageAllUsers: 'Manage all users in the system',
-    manageCoursesAndLessons: 'Manage courses and lessons',
-    systemAnalyticsAndReports: 'System analytics and reports',
-    configureSystemSettings: 'Configure system settings',
-    
-    // System Overview
-    totalCourses: 'Total Courses',
-    activeUsers: 'Active Users',
+    systemOverview: 'System Overview',
     systemStatus: 'System Status',
     systemUptime: 'System Uptime',
     lastBackup: 'Last Backup',
     storageUsed: 'Storage Used',
+    storageTotal: 'Total Storage',
     quickActions: 'Quick Actions',
+    addNewUser: 'Add New User',
+    addNewLesson: 'Add New Lesson',
     recentActivities: 'Recent Activities',
     viewAllActivities: 'View All Activities',
-    
-    // User Management
-    searchUsers: 'Search Users',
-    allRoles: 'All Roles',
-    allStatuses: 'All Statuses',
-    showingResults: 'Showing {count} results',
-    selectedUsers: '{count} users selected',
-    joined: 'Joined',
-    complete: 'Complete',
-    showingPage: 'Showing page {page} of {total}',
-    previous: 'Previous',
-    next: 'Next',
-    
-    // Content Management
-    courseManagementComingSoon: 'Course management coming soon',
-    lessonManagementComingSoon: 'Lesson management coming soon',
+    courseManagement: 'Course Management',
+    manageAllCourses: 'Manage all courses in the system',
+    addNewCourse: 'Add New Course',
     
     // Analytics
     userGrowth: 'User Growth',
@@ -491,21 +463,7 @@ export const translations = {
     studentManagement: 'Student Management',
     analyticsAccess: 'Analytics Access',
     readyToStart: 'Ready to Start?',
-    joinThousands: 'Join thousands of learners',
-
-    // Admin
-    courseManagement: {
-      en: 'Course Management',
-      de: 'Kursverwaltung'
-    },
-    manageAllCourses: {
-      en: 'Manage all courses in the system',
-      de: 'Verwalten Sie alle Kurse im System'
-    },
-    addNewCourse: {
-      en: 'Add New Course',
-      de: 'Neuen Kurs hinzufügen'
-    }
+    joinThousands: 'Join thousands of learners'
   }
 }
 
